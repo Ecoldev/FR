@@ -1,1 +1,292 @@
 
+Purpose
+Audit elements collected should enable an auditor to clearly understand - and verify on existing golden records - all steps related to the golden record life cycle:
+
+The acquisition of data involved in the golden record production, i.e.:
+The list of primary sources involved in the golden record production
+The transformation applied on source data before golden record production or update
+The golden records production rules, i.e.:
+The matching rules applied
+The survival rules applied
+The manual override
+The retention policy
+The deletion policy
+We distinguish two types of elements to produce:
+
+Specifications, which detail elements deployed and the design of the solution
+Evidences collected during execution of the different steps of golden data life cycle
+Specifications to produce
+As for any project, It is expected to have the set of documentation detailing:
+
+The security and architecture diagram, involving all primary sources and technical components used to transport and transform data, and including data transfer protocols.
+The data dictionaries of the applicative systems involved in the golden records life cycle management. The data dictionaries must comply with Group Data Office requirements (see specific paragraph below).
+The mapping between the applicative data dictionaries and the IT Asset Dictionary
+Installation and Operation files for technical components of the Data Cleansing System
+All rules applied to manage the golden record life cycle, detailing at least:
+The identification of primary sources used to produce golden records
+The transformation applied on primary sources
+The matching rules
+The survival rules
+The access right management for manual override, describing enrollment workflow and segregation access on content.
+The retention and deletion policies
+Applicative data dictionary format
+Group Data Office defines the following structure:
+
+Attribute
+
+Definition
+
+Identifier
+
+Unique identifier of the data within the application dictionary.
+
+Application data name
+
+Unique functional designation of the data
+
+Definition
+
+Definition of application data
+
+Entity to which you belong
+
+Specifies the connecting entity within the Data Model.
+
+Business ID
+
+Identifier of the business data(s) corresponding to the application data (information declined from the business dictionary)
+
+Name of the business data
+
+Designation of the business data(s) corresponding to the application data (information declined from the business dictionary)
+
+Level of intrinsic confidentiality
+
+Level of intrinsic confidentiality of the business data (information declined from the business dictionary)
+
+Personal data
+
+Personal data (Yes / No) (information declined from the business dictionary)
+
+Application ID
+
+Identifier of the application where the data is stored
+
+Application label
+
+Application Name
+
+Data feeding mode
+
+Data feeding mode in the application:
+
+- Import: in case the application retrieves this data from another application
+
+- Mixed: in case the application retrieves this data from another application or the one created in the application
+
+- Create: in the case where the application produces the data
+
+Data Source Application ID
+
+ID of the source application(s) to be entered if the power mode is "Import" or "Mixed"
+
+Name of the Data Source Application
+
+Name of the source application(s) to be filled in if the power mode is "Import" or "Mixed"
+
+Source Application Data ID
+
+Identifier of the source data(s) to be entered if the power mode is "Import" or "Mixed"
+
+Name of the source application data
+
+Name of source(s) to be filled in if the power mode is "Import" or "Mixed"
+
+For initialization:
+
+"Business ID" is valued with the concatenation of "Business Object" and "Business Attribute".
+For instance the identifier of the Server's Asset Group Id is : [Server].[AssetGroupId].
+As the personal data attribute exists in the IT Asset Dictonary, it is not compulsary to managed it in the application data dictionary
+Evidences
+Evidences differ from specifications, as they should result, depending of the audited activity, from reverse engineering or functions embedded in the processing activity.
+
+This paragraph presents:
+
+The evidences to be collected during the different steps of processing of golden data
+The expected collect methods, in order of preferred method
+The expected publication methods, in order of preferred method
+All activities	Catch trigger, timestamp and result of any execution step	
+The execution Datetime
+The trigger of the step (schedulling, event, manual,...)
+The status of the step (success, error, warning,...)
+Code and/or message when the status is error or warning
+Automatic	
+A self service interface
+A request fulfilled with existing functionalities
+A request fulfilled with additional development
+Data acquisition	
+Enable the understanding of the lineage of data collect
+
+(reverse engineering of the implementation)
+
+Identification of data sources
+Data transformations applied:
+the source data involved in the transformation
+the target data storing the result of the transformation
+data transformation rules or formulas
+An harvesting solution connected to the data acquisition solution
+A generic functionality embedded in the data acquisition solution (same ranking as #1 method)
+A specific code integrated in the data acquisition code
+A self service interface
+A request fulfilled with existing functionalities
+A request fulfilled with additional development
+Golden record valuation	
+Enable the understanding and the verification (with a redo method) of any golden record valuation.
+
+(record by record traceability)
+
+The primary sources rows involved in the production of a golden record
+The matching rules applied
+The survival rules applied
+The enrichment applied
+The cross referencing between primary sources rows identifiers and golden record identifier
+A generic functionality executed during the golden record production process
+A specific code integrated within the golden record production code
+A self service interface
+A request fulfilled with existing functionalities
+A request fulfilled with additional development
+Manual override	Track all changes performed manually	
+The author of the modification
+The attributes of golden records that have been modified
+The value of attributes before the modification
+Automatic	
+A self service interface
+A request fulfilled with existing functionalities
+A request fulfilled with additional development
+Archiving and deletion	Track archiving and deletion trigger and execution	
+The rule applied to trigger the archiving or deletion
+The set of data archived or deleted
+The delete method (hard or soft)
+Automatic	
+A self service interface
+A request fulfilled with existing functionalities
+A request fulfilled with additional development
+
+
+
+					
+					
+	Evidences for Server objects		source: https://confluence.group.echonet/x/L5lODQ		
+	Evidences differ from specifications, as they should result, depending of the audited activity, from reverse engineering or functions embedded in the processing activity.				
+	This paragraph presents:				
+	-The evidences to be collected during the different steps of processing of golden data				
+	-The expected collect methods, in order of preferred method				
+	- The expected publication methods, in order of preferred method				
+					
+	Activity	Objective			
+	Data acquisition	 	Elements to collect	Status	Note
+		Catch trigger, timestamp and	The execution Date		
+		result of any execution step	The trigger of the step (schedulling, event, manual,...)		
+			The status of the step (success, error, warning,...)		
+		Enable the understanding of 	Code and/or message when the status is error or warning		
+		the lineage of data collect	Collect methods (in preferred order)	Status	Note
+		(reverse engineering	Automatic		
+		of the implementation)	Publication methods (in preferred order)	Status	Note
+			1. A self service interface		
+			2. A request fulfilled with existing functionalities		
+			3. A request fulfilled with additional development		
+	Data acquisition		Elements to collect	Status	Note
+			Identification of data sources		
+			- For Server objects		
+			Data transformations applied:		
+			- The source data involved in the transformation		
+			- The target data storing the result of the transformation		
+			- Data transformation rules or formulas		
+			Collect methods (in preferred order)	Status	Note
+			1. An harvesting solution connected to the data acquisition solution		
+			2. A generic functionality embedded in the data acquisition solution (same ranking as #1 method)		
+			3. A specific code integrated in the data acquisition code		
+			Publication methods (in prefeered order)	Status	Note
+			1. A self service interface		
+			2. A request fulfilled with existing functionalities		
+			3. A request fulfilled with additional development		
+					
+	Golden record valuation		Elements to collect	Status	Note
+		Catch trigger, timestamp and	The execution Date		
+		result of any execution step	The trigger of the step (schedulling, event, manual,...)		
+			The status of the step (success, error, warning,...)		
+		Enable the understanding 	Code and/or message when the status is error or warning		
+		and the verification 	Collect methods (in preferred order)	Status	Note
+		(with a redo method) 	Automatic		
+		of any golden record valuation.	Publication methods (in preferred order)	Status	Note
+		(record by record traceability)	1. A self service interface		
+			2. A request fulfilled with existing functionalities		
+			3. A request fulfilled with additional development		
+	Golden record valuation		Elements to collect	Status	Note
+			The primary sources rows involved in the production of a golden record		
+			The matching rules applied		
+			The survival rules applied		
+			The enrichment applied		
+			The cross referencing between primary sources rows identifiers and golden record identifier		
+			Collect methods (in preferred order)	Status	Note
+			1. A generic functionality executed during the golden record production process		
+			2. A specific code integrated within the golden record production code		
+			Publication methods (in prefeered order)	Status	Note
+			1. A self service interface		
+			2. A request fulfilled with existing functionalities		
+			3. A request fulfilled with additional development		
+					
+	Manual override		Elements to collect	Status	Note
+		Catch trigger, timestamp and	The execution Date		
+		result of any execution step	The trigger of the step (schedulling, event, manual,...)		
+			The status of the step (success, error, warning,...)		
+		Track all changes	Code and/or message when the status is error or warning		
+		performed manually	Collect methods (in preferred order)	Status	Note
+			Automatic		
+			Publication methods (in preferred order)	Status	Note
+			1. A self service interface		
+			2. A request fulfilled with existing functionalities		
+			3. A request fulfilled with additional development		
+	Manual override		Elements to collect	Status	Note
+			The author of the modification		
+			The attributes of golden records that have been modified		
+			The value of attributes before the modification		
+			Collect methods (in preferred order)	Status	Note
+			Automatic		
+			Publication methods (in profeered order)	Status	Note
+			1. A self service interface		
+			2. A request fulfilled with existing functionalities		
+			3. A request fulfilled with additional development		
+					
+	Archiving and deletion		Elements to collect	Status	Note
+		Catch trigger, timestamp and	The execution Date		
+		result of any execution step	The trigger of the step (schedulling, event, manual,...)		
+			The status of the step (success, error, warning,...)		
+		Track archiving and deletion 	Code and/or message when the status is error or warning		
+		trigger and execution	Collect methods (in preferred order)	Status	Note
+			Automatic		
+			Publication methods (in preferred order)	Status	Note
+			1. A self service interface		
+			2. A request fulfilled with existing functionalities		
+			3. A request fulfilled with additional development		
+	Archiving and deletion		Elements to collect	Status	Note
+			The rule applied to trigger the archiving or deletion		
+			The set of data archived or deleted		
+			The delete method (hard or soft)		
+			Collect methods (in preferred order)	Status	Note
+			Automatic		
+			Publication methods (in prefeered order)	Status	Note
+			1. A self service interface		
+			2. A request fulfilled with existing functionalities		
+			3. A request fulfilled with additional development		
+					
+	Total	0			
+					
+	# answers for Network Gear Obj	Total			
+	Satisfactory (1)	0			
+	Fairly satisfactory (2)	0			
+	Less sastisfactory (3)	0			
+	Unsatisfactory (4)	0			
+
+
+
